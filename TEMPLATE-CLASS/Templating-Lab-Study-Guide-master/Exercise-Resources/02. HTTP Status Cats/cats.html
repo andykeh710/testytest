@@ -7,22 +7,67 @@
     <script src="../handlebars.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <script src="catSeeder.js"></script>
+    <script src="cats.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 </head>
 <body>
-<section id="allCats">
-    <ul>
-        <li>
-            <img src="images/cat100.jpg" width="250" height="250" alt="Card image cap">
-            <div class="info">
-                <button class="showBtn">Show status code</button>
-                <div class="status" style="display: none" id="100">
-                    <h4>Status Code: 100</h4>
-                    <p>Continue</p>
+<div >
+    <ul id="allCats"></ul>
+</div>
+    <script id="cat-template" type="text/x-handlebars-template" >
+        <!--Create template here -->
+        {{#each cats}}
+        <li>fsasffas</li>
+        {{/each}}
+
+    </script>
+    <script type="text/javascript">
+        //get <script> templating section from html above by ID
+        var templateInfo = document.getElementById("cat-template").innerHTML;
+        //use handlebars to parse it into html
+        console.log("Frog")
+        console.log(cats)
+        var catsArr =[];
+        for(cat in cats){
+            //console.log(cat)
+            console.log(cats[cat].statusMessage)
+            catsArr.push(cats[cat])
+            let templateHTML = `        
+            <li>
+                <img src="images/cat${cats[cat].id}.jpg" width="250" height="250" alt="Card image cap">
+                <div class="info">
+                    <button class="showBtn" onclick="showDetails(${cats[cat].id})" >Show status code</button>
+                    <div class="status" style="display: none" id="${cats[cat].id}">
+                        <h4>Status Code: ${cats[cat].statusCode}</h4>
+                        <p>${cats[cat].statusMessage}</p>
+                    </div>
                 </div>
-            </div>
-        </li>
-        <li>
+            </li>`
+            // let templateData = template(catsArr);//context is your data object variable name
+            function showDetails(id){
+    console.log("this worked")
+    document.getElementById(`${id}`).style.display = "block";
+}
+        
+            //append merged/templated data into dom element
+        document.getElementById("allCats").innerHTML += templateHTML;
+        }
+        console.log(catsArr)
+        var template = Handlebars.compile(templateInfo);
+        //pull data to be merged into templating by using template() fn
+
+      </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+        <!-- <li>
             <img src="images/cat200.jpg" width="250" height="250" alt="Card image cap">
             <div class="info">
                 <button class="showBtn">Show status code</button>
@@ -121,12 +166,4 @@
                     <p>Network Authentication Required</p>
                 </div>
             </div>
-        </li>
-    </ul>
-</section>
-    <script type="text/x-handlebars-template" id="cat-template">
-        <!--Create template here -->
-    </script>
-<script src="template.js"></script>
-</body>
-</html>
+        </li> --> -->
