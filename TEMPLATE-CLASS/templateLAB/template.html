@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+      <script src="contacts.js"></script>
+      <title>Document</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <div >
+        <h1>"FROGS"</h1>
+    </div>
+    <div id="contacts1"></div>
+
+    <script id="contact-template" type="text/x-handlebars-template">
+        {{#each contacts}}
+        <div class="contact card">
+            <div>
+              <i class="far fa-user-circle gravatar"></i>
+            </div>
+            <div class="info">
+              <h2>Name: {{name}}</h2>
+              <button class="detailsBtn" onclick="showDetails({{id}})">Details</button>
+              <div class="details" id="{{id}}" style="display: none;">
+                <p>Phone number: {{phoneNumber}}</p>
+                <p>Email: {{email}}</p>
+              </div>
+            </div>
+          </div>
+          {{/each}}
+    </script>
+
+    <script>
+        //console.log("Frog Test ")
+        //console.log(contacts) // printing out contacts from function 
+        let contactTemplate = document.getElementById("contact-template").innerHTML;
+        //console.log(contactTemplate)
+        let myTemplate = Handlebars.compile(contactTemplate);  /// this is now a function that generates HTML baseon out template 
+        //console.log(myTemplate)
+        let templateHTML = myTemplate({ contacts }) // TURNED INTO  -- assigning the output of ther handebars functionst o a variable 
+        console.log(templateHTML)
+        document.getElementById("contacts1").innerHTML += templateHTML;
+        function showDetails(id) {
+            console.log("show details is working and id is ", id)
+            let currentDetails = document.getElementById(id);
+            currentDetails.style.display = "block"
+        }
+    </script>
+<!-- //template(contacts)
+    let templateContacts = Handlebars.compile(
+    '<div class="contact card" ><div><i class="far fa-user-circle gravatar"></i></div><div class = "info"><h2>Name: {{name}}</h2><button class = "detailsBtn" onclick="showDetails(2)">Details</button><div class="details" id="{{id}}"><p>Phone number: {{phoneNumber}}</p><p>Email: {{email}}</p></div></div></div>'
+        );
+//console.log(templateContacts(contacts))
+let divContainer = document.getElementById('contacts');
+        divContainer.innerHTML = templateContacts(contacts)
+        //console.log(template(contacts));
+
+// {{#each countries}}
+//   {{@index}} : {{this}}<br>
+// {{/each}}
+
+// {{#each names}}
+//   Name : {{firstName}} {{lastName}}<br>
+// {{/each}}
+
+// in conjunction with this context variable:
+
+// var context = {
+//   "countries":["Russia","India","USA"],
+// //   "names" : [
+// //     {"firstName":"Ritesh","lastName":"Kumar"},
+// //     {"firstName":"John","lastName":"Doe"}
+// //   ]
+// }
+// then the output will be:
+// 0 : Russia
+// 1 : India
+// 2 : USA
+// Name : Ritesh Kumar
+// Name : John Doe
+
+//         <ul class="people_list">
+//   {{#each people}}
+//   <li>{{this}}</li>
+//   {{/each}}
+// </ul>
+// {{#each this}}
+//     <div class="row"></div>
+// {{/each}}
+        // when we create new card : 
+       // console.log(divContainer)
+    </script> -->
+<!-- <script>
+    // compile the template
+    var template = Handlebars.compile("Handlebars <b>{{name}}</b>");
+    // execute the compiled template and print the output to the console
+    console.log(template({ name: "rocks!" }));
+  </script>
+   -->
+</body>
+</html>

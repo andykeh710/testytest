@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>List Towns</title>
+    <script src="../handlebars.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <form action="#" class="content">
+        <label for="towns">Towns</label>
+        <input id="towns" type="text" />
+        <button type="button" id="btnLoadTowns">Load</button>
+    </form>
+    <div >
+        <ul id="root">
+        </ul>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+
+<script id="outputTemplate" type="text/x-handlebars-template">
+
+        <li>{{town}}</li>
+
+</script>
+<script>
+    console.log("This is working ")
+let loadBtn = document.getElementById("btnLoadTowns")
+loadBtn.addEventListener("click", function attachElements() {
+    console.log("FROGM")
+    let townInput = document.getElementById("towns").value;
+    let townOutputDiv= document.getElementById("root").innerHTML;
+    var townsArr = townInput.split(", ");
+
+    var outputTemplate = document.getElementById("outputTemplate").innerHTML;
+    var template = Handlebars.compile(outputTemplate);
+    let tempArr =[];
+    for (town of townsArr){
+        // let tempOjb = {town: `${town}`}
+        // tempArr.push(tempOjb);
+        let townData = template({town: `${town}`})
+        document.getElementById("root").innerHTML += townData;
+   // console.log(tempArr);
+        console.log(town);
+    }
+    // console.log(tempArr);
+
+    // console.log(townData)
+    // console.log(tempArr[0].town);
+    
+})
+    // execute the compiled template and print the output to the console
+    // console.log(template({ doesWhat: "rocks!" }));
+  </script>
+</body>
+<script src="./app.js"></script>
+
+</html>

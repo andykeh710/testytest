@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FROG HANDLEBARS</title>
+</head>
+<body>
+
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    
+    <script>
+
+    let src=document.getElementById("contact-template").innerHTML;
+    let template2=Handlebars.compile(src);
+    let context={
+    name:'IvanIvanov',
+    phone:'0888123456',
+    email:'i.ivanov@gmail.com'};
+
+    let html=template2(context);
+    document.getElementById('contact-template').innerHTML = html
+
+
+    </script>
+    <!-- THIS IS A DIFFERENT SCRIPT DIFFERENT FROM DO STUFF JS FILE -->
+    <script id="contact-template"
+            type="text/x-handlebars-template">
+    <article>
+        <div class="title">
+        {{name}}
+            <button>&#8505;</button>
+        </div>
+        <div class="info">
+            <span>&phone;{{phone}}</span>
+            <span>&#9993;{{email}}</span>
+        </div>
+    </article>
+</script>
+
+
+</body>
+</html>
